@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>토스</title>
+
+  <!-- PWA / iOS 앱 설정 -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="토스">
+
+  <!-- 앱 아이콘 -->
+  <link rel="apple-touch-icon" href="icon.png">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    #upload {
+      position: absolute;
+      top: 20px;
+      z-index: 10;
+    }
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+  </style>
+</head>
+<body>
+
+<input id="upload" type="file" accept="image/*">
+<img id="preview">
+
+<script>
+  const upload = document.getElementById('upload');
+  const preview = document.getElementById('preview');
+
+  upload.addEventListener('change', () => {
+    const file = upload.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = e => {
+      preview.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+</script>
+
+</body>
+</html>
