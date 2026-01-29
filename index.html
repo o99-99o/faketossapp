@@ -4,12 +4,10 @@
   <meta charset="UTF-8">
   <title>토스</title>
 
-  <!-- PWA / iOS 앱 설정 -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="토스">
 
-  <!-- 앱 아이콘 -->
   <link rel="apple-touch-icon" href="icon.png">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -18,9 +16,7 @@
     body {
       margin: 0;
       background: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      width: 100vw;
       height: 100vh;
       overflow: hidden;
     }
@@ -31,10 +27,10 @@
       z-index: 10;
     }
 
-    img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
+    #preview {
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover; /* 🔥 화면 꽉 채우기 */
     }
   </style>
 </head>
@@ -54,6 +50,7 @@
     const reader = new FileReader();
     reader.onload = e => {
       preview.src = e.target.result;
+      upload.style.display = "none";
     };
     reader.readAsDataURL(file);
   });
