@@ -1,63 +1,58 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>토스 v5</title>
+<meta charset="UTF-8">
+<title>토스 v6</title>
 
-  <meta name="viewport"
-        content="width=device-width,
-                 height=device-height,
-                 initial-scale=1.0,
-                 viewport-fit=cover">
+<meta name="viewport"
+      content="width=device-width,
+               height=device-height,
+               initial-scale=1.0,
+               viewport-fit=cover">
 
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      background: #16151B;
-    }
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background: #16151B;
+    overflow: hidden;
+  }
 
-    /* 전체 화면 컨테이너 */
-    #container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh; /* 🔥 줄이지 말 것 */
-      background: #16151B;
-    }
+  /* 전체 래퍼 */
+  #app {
+    height: 100dvh;          /* 🔥 PWA 안정 */
+    background: #16151B;
+    display: flex;
+    align-items: flex-end;   /* 🔥 아래 고정 */
+    justify-content: center;
+  }
 
-    /* 이미지 */
-    #preview {
-      position: absolute;
-      bottom: 0;            /* 🔥 아래 고정 */
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: bottom; /* 🔥 위만 잘림 */
-      display: block;
-    }
+  #preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: bottom; /* 🔥 위만 잘림 */
+    display: block;
+  }
 
-    #upload {
-      position: fixed;
-      top: calc(env(safe-area-inset-top) + 12px);
-      left: 12px;
-      z-index: 10;
-    }
-  </style>
+  #upload {
+    position: absolute;
+    top: calc(env(safe-area-inset-top) + 12px);
+    left: 12px;
+    z-index: 10;
+  }
+</style>
 </head>
 <body>
 
 <input id="upload" type="file" accept="image/*">
 
-<div id="container">
+<div id="app">
   <img id="preview">
 </div>
 
