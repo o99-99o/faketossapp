@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>토스 v4</title>
+  <title>토스 v5</title>
 
   <meta name="viewport"
         content="width=device-width,
@@ -20,25 +20,28 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
-      background: #16151B; /* 🔥 status bar랑 맞출 색 */
+      background: #16151B;
     }
 
-    /* 이미지 컨테이너 */
+    /* 전체 화면 컨테이너 */
     #container {
       position: fixed;
-      top: env(safe-area-inset-top); /* 상태바 아래부터 */
+      top: 0;
       left: 0;
       width: 100vw;
-      height: calc(100vh - env(safe-area-inset-top));
+      height: 100vh; /* 🔥 줄이지 말 것 */
       background: #16151B;
     }
 
     /* 이미지 */
     #preview {
+      position: absolute;
+      bottom: 0;            /* 🔥 아래 고정 */
+      left: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: bottom; /* 🔥 아래 고정, 위 잘림 */
+      object-position: bottom; /* 🔥 위만 잘림 */
       display: block;
     }
 
