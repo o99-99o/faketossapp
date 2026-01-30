@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>토스 v3</title>
+  <title>토스 v4</title>
 
   <meta name="viewport"
         content="width=device-width,
@@ -12,9 +12,6 @@
 
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="토스 v3">
-
-  <link rel="apple-touch-icon" href="icon.png">
 
   <style>
     html, body {
@@ -23,17 +20,26 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
-      background: transparent; /* 🔥 중요 */
+      background: #16151B; /* 🔥 status bar랑 맞출 색 */
     }
 
-    #preview {
+    /* 이미지 컨테이너 */
+    #container {
       position: fixed;
-      top: calc(-1 * env(safe-area-inset-top)); /* 🔥 핵심 */
+      top: env(safe-area-inset-top); /* 상태바 아래부터 */
       left: 0;
       width: 100vw;
-      height: calc(100vh + env(safe-area-inset-top));
+      height: calc(100vh - env(safe-area-inset-top));
+      background: #16151B;
+    }
+
+    /* 이미지 */
+    #preview {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      background: black;
+      object-position: bottom; /* 🔥 아래 고정, 위 잘림 */
+      display: block;
     }
 
     #upload {
@@ -47,7 +53,10 @@
 <body>
 
 <input id="upload" type="file" accept="image/*">
-<img id="preview">
+
+<div id="container">
+  <img id="preview">
+</div>
 
 <script>
   const upload = document.getElementById('upload');
